@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liuyang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="环境变量配置1234567891011121314151617181920212223242526272829303132333435363738394041@echo off@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!set INCLUDE1&#x3D;&quot;D:\\Prog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode配置编译链接(GNU,MSVC...)">
+<meta property="og:url" content="http://example.com/2023/06/03/2023-06-03-14-13-25/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境变量配置1234567891011121314151617181920212223242526272829303132333435363738394041@echo off@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!@REM 环境变量中不能有引号，所以还是一个一个添加吧!!!set INCLUDE1&#x3D;&quot;D:\\Prog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-03T06:13:26.000Z">
+<meta property="article:modified_time" content="2023-06-03T06:45:23.562Z">
+<meta property="article:author" content="liuyang">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>vscode配置编译链接(GNU,MSVC...) - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vscode配置编译链接(GNU,MSVC...)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-03 14:13" pubdate>
+          2023年6月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vscode配置编译链接(GNU,MSVC...)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-meta">@echo</span> off<br><br><span class="hljs-meta">@REM</span> 环境变量中不能有引号，所以还是一个一个添加吧<span class="hljs-operator">!!!</span><br><span class="hljs-meta">@REM</span> 环境变量中不能有引号，所以还是一个一个添加吧<span class="hljs-operator">!!!</span><br><span class="hljs-meta">@REM</span> 环境变量中不能有引号，所以还是一个一个添加吧<span class="hljs-operator">!!!</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE1</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Programs<span class="hljs-subst">\\</span>Microsoft Visual Studio<span class="hljs-subst">\\</span>2019<span class="hljs-subst">\\</span>Community<span class="hljs-subst">\\</span>VC<span class="hljs-subst">\\</span>Tools<span class="hljs-subst">\\</span>MSVC<span class="hljs-subst">\\</span>14.29.30133<span class="hljs-subst">\\</span>include"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">LIB1</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Programs<span class="hljs-subst">\\</span>Microsoft Visual Studio<span class="hljs-subst">\\</span>2019<span class="hljs-subst">\\</span>Community<span class="hljs-subst">\\</span>VC<span class="hljs-subst">\\</span>Tools<span class="hljs-subst">\\</span>MSVC<span class="hljs-subst">\\</span>14.29.30133<span class="hljs-subst">\\</span>lib<span class="hljs-subst">\\</span>x64"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE2</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Include<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>cppwinrt"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE3</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Include<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>shared"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE4</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Include<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>ucrt"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE5</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Include\10.0.19041.0<span class="hljs-subst">\\</span>um"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">INCLUDE6</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Include<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>winrt"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">LIB2</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Lib<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>ucrt<span class="hljs-subst">\\</span>x64"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">LIB3</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Lib<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>ucrt_enclave<span class="hljs-subst">\\</span>x64"</span><br><br><span class="hljs-keyword">set</span> <span class="hljs-type">LIB4</span><span class="hljs-operator">=</span><span class="hljs-string">"D:<span class="hljs-subst">\\</span>Windows Kits<span class="hljs-subst">\\</span>10<span class="hljs-subst">\\</span>Lib<span class="hljs-subst">\\</span>10.0.19041.0<span class="hljs-subst">\\</span>um<span class="hljs-subst">\\</span>x64"</span><br><br>wmic <span class="hljs-type">ENVIRONMENT</span> <span class="hljs-keyword">where</span> <span class="hljs-string">"name='LIB'"</span> delete<br>wmic <span class="hljs-type">ENVIRONMENT</span> create name<span class="hljs-operator">=</span><span class="hljs-string">"LIB"</span>,username<span class="hljs-operator">=</span><span class="hljs-string">"&lt;system&gt;"</span>,<span class="hljs-type">VariableValue</span><span class="hljs-operator">=%</span><span class="hljs-type">LIB1</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">LIB2</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">LIB3</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">LIB4</span><span class="hljs-operator">%</span>;<br><br>wmic <span class="hljs-type">ENVIRONMENT</span> <span class="hljs-keyword">where</span> <span class="hljs-string">"name='INCLUDE'"</span> delete<br>wmic <span class="hljs-type">ENVIRONMENT</span> create name<span class="hljs-operator">=</span><span class="hljs-string">"INCLUDE"</span>,username<span class="hljs-operator">=</span><span class="hljs-string">"&lt;system&gt;"</span>,<span class="hljs-type">VariableValue</span><span class="hljs-operator">=%</span><span class="hljs-type">INCLUDE1</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">INCLUDE2</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">INCLUDE3</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">INCLUDE4</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">INCLUDE5</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">INCLUDE6</span><span class="hljs-operator">%</span>;<br><br><span class="hljs-keyword">set</span> <span class="hljs-type">EXE1</span><span class="hljs-operator">=</span><span class="hljs-string">"D:\Programs\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64"</span><br><span class="hljs-keyword">set</span> <span class="hljs-type">EXE2</span><span class="hljs-operator">=</span><span class="hljs-string">"D:\Programs\msys64\usr\bin"</span><br><span class="hljs-keyword">set</span> <span class="hljs-type">EXE3</span><span class="hljs-operator">=</span><span class="hljs-string">"D:\Programs\msys64\mingw64\bin"</span><br><span class="hljs-keyword">set</span> <span class="hljs-type">EXE4</span><span class="hljs-operator">=</span><span class="hljs-string">"D:\Programs\Miniconda3\Scripts"</span><br><span class="hljs-keyword">set</span> <span class="hljs-type">EXE5</span><span class="hljs-operator">=</span><span class="hljs-string">"D:\Programs<span class="hljs-subst">\n</span>odejs"</span><br>wmic <span class="hljs-type">ENVIRONMENT</span> <span class="hljs-keyword">where</span> <span class="hljs-string">"name='PATH_MY'"</span> delete<br>wmic <span class="hljs-type">ENVIRONMENT</span> create name<span class="hljs-operator">=</span><span class="hljs-string">"PATH_MY"</span>,username<span class="hljs-operator">=</span><span class="hljs-string">"&lt;system&gt;"</span>,<span class="hljs-type">VariableValue</span><span class="hljs-operator">=%</span><span class="hljs-type">EXE1</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">EXE2</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">EXE3</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">EXE4</span><span class="hljs-operator">%</span>;<span class="hljs-operator">%</span><span class="hljs-type">EXE5</span><span class="hljs-operator">%</span>;<br><br>cmd.exe \k<br></code></pre></td></tr></table></figure>
+
+<h2 id="创建目录结构"><a href="#创建目录结构" class="headerlink" title="创建目录结构"></a>创建目录结构</h2><h3 id="create-dir-bat"><a href="#create-dir-bat" class="headerlink" title="_create_dir.bat"></a>_create_dir.bat</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vim">@echo off<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">".vscode\" (mkdir .vscode &amp;&amp; echo "</span>.vscode created done.<span class="hljs-string">") else (echo "</span>.vscode <span class="hljs-built_in">exists</span>.<span class="hljs-comment">")</span><br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"build\" (mkdir build &amp;&amp; echo "</span>build created done.<span class="hljs-string">") else (echo "</span>build <span class="hljs-built_in">exists</span>.<span class="hljs-comment">")</span><br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"include\" (mkdir include &amp;&amp; echo "</span>include created done.<span class="hljs-string">") else (echo "</span>include <span class="hljs-built_in">exists</span>.<span class="hljs-comment">")</span><br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"lib\" (mkdir lib &amp;&amp; echo "</span>lib created done.<span class="hljs-string">") else (echo "</span>lib <span class="hljs-built_in">exists</span>.<span class="hljs-comment">")</span><br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"src\" (mkdir src &amp;&amp; echo "</span>src created done.<span class="hljs-string">") else (echo "</span>src <span class="hljs-built_in">exists</span>.<span class="hljs-comment">")</span><br>@Rem<br><span class="hljs-keyword">cd</span> .vscode<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"c_cpp_properties.json"</span> (<span class="hljs-built_in">type</span> nul&gt;c_cpp_properties.json &amp;&amp; <span class="hljs-keyword">echo</span> <span class="hljs-string">"c_cpp_properties.json created done."</span>) <span class="hljs-keyword">else</span> (<span class="hljs-keyword">echo</span> <span class="hljs-string">"c_cpp_properties.json exists."</span>)<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"compile.bat"</span> (<span class="hljs-built_in">type</span> nul&gt;compile.bat &amp;&amp; <span class="hljs-keyword">echo</span> <span class="hljs-string">"compile.bat created done."</span>) <span class="hljs-keyword">else</span> (<span class="hljs-keyword">echo</span> <span class="hljs-string">"compile.bat exists."</span>)<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"launch.json"</span> (<span class="hljs-built_in">type</span> nul&gt;launch.json &amp;&amp; <span class="hljs-keyword">echo</span> <span class="hljs-string">"launch.json created done."</span>) <span class="hljs-keyword">else</span> (<span class="hljs-keyword">echo</span> <span class="hljs-string">"launch.json exists."</span>)<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"tasks.json"</span> (<span class="hljs-built_in">type</span> nul&gt;tasks.json &amp;&amp; <span class="hljs-keyword">echo</span> <span class="hljs-string">"tasks.json created done."</span>) <span class="hljs-keyword">else</span> (<span class="hljs-keyword">echo</span> <span class="hljs-string">"tasks.json exists."</span>)<br><span class="hljs-keyword">cd</span> ..<br><span class="hljs-keyword">cd</span> src<br><span class="hljs-keyword">if</span> not exist <span class="hljs-string">"main.cpp"</span> (<span class="hljs-built_in">type</span> nul&gt;main.cpp &amp;&amp; <span class="hljs-keyword">echo</span> <span class="hljs-string">"main.cpp created done."</span>) <span class="hljs-keyword">else</span> (<span class="hljs-keyword">echo</span> <span class="hljs-string">"main.cpp exists."</span>)<br>pause<br></code></pre></td></tr></table></figure>
+
+<h2 id="“-vscode”"><a href="#“-vscode”" class="headerlink" title="“.vscode”"></a>“.vscode”</h2><h3 id="“-vscode-compile-bat”"><a href="#“-vscode-compile-bat”" class="headerlink" title="“.vscode\compile.bat”"></a>“.vscode\compile.bat”</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-comment">@REM</span><br><span class="hljs-keyword">call</span> "D:\\Programs\\oneapi\\setvars.bat" intel64<br><span class="hljs-comment">@REM</span><br><span class="hljs-built_in">set</span> file=%<span class="hljs-number">1</span><br><span class="hljs-built_in">cd</span> build<br>cl <span class="hljs-variable">%file%</span> /Zi /I "D:\\Programs\\oneapi\\mkl\\<span class="hljs-number">2022</span>.<span class="hljs-number">1</span>.<span class="hljs-number">0</span>\\include" /link mkl_core.lib mkl_sequential.lib mkl_intel_thread.lib mkl_intel_lp64.lib mkl_intel_ilp64.lib<br><span class="hljs-comment">@REM</span><br><span class="hljs-comment">@REM comment below (do not use chinese comments,or errors may occur)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="“-vscode-launch-json”"><a href="#“-vscode-launch-json”" class="headerlink" title="“.vscode\launch.json”"></a>“.vscode\launch.json”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">{<br>    <span class="hljs-string">"configurations"</span>: [<br>        {<br>        <span class="hljs-string">"name"</span>: <span class="hljs-string">"MSVC-cppvsdbg-debug"</span>,<br>        <span class="hljs-string">"type"</span>: <span class="hljs-string">"cppvsdbg"</span>,<br>        <span class="hljs-string">"request"</span>: <span class="hljs-string">"launch"</span>,<br>        <span class="hljs-string">"program"</span>: <span class="hljs-string">"<span class="hljs-variable">${fileDirname}</span>\\..\\build\\<span class="hljs-variable">${fileBasenameNoExtension}</span>.exe"</span>,<br>        <span class="hljs-string">"args"</span>: [],<br>        <span class="hljs-string">"stopAtEntry"</span>: <span class="hljs-literal">false</span>,<br>        <span class="hljs-string">"cwd"</span>: <span class="hljs-string">"<span class="hljs-variable">${fileDirname}</span>"</span>,<br>        <span class="hljs-string">"preLaunchTask"</span>: <span class="hljs-string">"MSVC-cl-compile"</span><br>        }<br>    ],<br>    <span class="hljs-string">"version"</span>: <span class="hljs-string">"2.0.0"</span><br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="“-vscode-tasks-json”"><a href="#“-vscode-tasks-json”" class="headerlink" title="“.vscode\tasks.json”"></a>“.vscode\tasks.json”</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">{<br>    <span class="hljs-string">"tasks"</span>: [<br>        {<br>            <span class="hljs-string">"label"</span>: <span class="hljs-string">"MSVC-cl-compile"</span>,<br>            <span class="hljs-string">"type"</span>: <span class="hljs-string">"shell"</span>,<br>            // <span class="hljs-string">"command"</span>: <span class="hljs-string">"<span class="hljs-variable">${fileDirname}</span>/../.vscode/compile.sh <span class="hljs-variable">${file}</span> <span class="hljs-variable">${fileBasenameNoExtension}</span>"</span>,<br>            <span class="hljs-string">"command"</span>: <span class="hljs-string">"<span class="hljs-variable">${fileDirname}</span>/../.vscode/compile.bat <span class="hljs-variable">${file}</span>"</span>,<br>            <span class="hljs-string">"args"</span>: [],<br>            <span class="hljs-string">"problemMatcher"</span>: [],<br>            <span class="hljs-string">"group"</span>: {<br>                <span class="hljs-string">"kind"</span>: <span class="hljs-string">"build"</span>,<br>                <span class="hljs-string">"isDefault"</span>: <span class="hljs-literal">true</span><br>            }<br>        }<br>    ],<br>    <span class="hljs-string">"version"</span>: <span class="hljs-string">"2.0.0"</span><br>}<br></code></pre></td></tr></table></figure>
+
+<h3 id="“-vscode-c-cpp-properties-json”"><a href="#“-vscode-c-cpp-properties-json”" class="headerlink" title="“.vscode\c_cpp_properties.json”"></a>“.vscode\c_cpp_properties.json”</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs swift">{<br>    <span class="hljs-string">"configurations"</span>: [<br>        {<br>            <span class="hljs-string">"name"</span>: <span class="hljs-string">"windows-msvc-x64"</span>,<br>            <span class="hljs-string">"includePath"</span>: [<br>                <span class="hljs-string">"${workspaceFolder}/**"</span>,<br>                <span class="hljs-string">"D:<span class="hljs-subst">\\</span>Programs<span class="hljs-subst">\\</span>oneapi<span class="hljs-subst">\\</span>mkl<span class="hljs-subst">\\</span>2022.1.0<span class="hljs-subst">\\</span>include"</span>,<br>                <span class="hljs-string">"D:<span class="hljs-subst">\\</span>Programs<span class="hljs-subst">\\</span>oneapi<span class="hljs-subst">\\</span>mkl<span class="hljs-subst">\\</span>2022.1.0<span class="hljs-subst">\\</span>lib<span class="hljs-subst">\\</span>intel64"</span><br>            ]<br>        }<br>    ],<br>    <span class="hljs-string">"version"</span>: <span class="hljs-number">4</span><br>}<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vscode配置编译链接(GNU,MSVC...)</div>
+      <div>http://example.com/2023/06/03/2023-06-03-14-13-25/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liuyang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/02/2023-06-02-18-11-10/" title="好用的批处理文件">
+                        <span class="hidden-mobile">好用的批处理文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
